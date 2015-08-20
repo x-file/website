@@ -43,9 +43,12 @@ public class ArticleServiceSeach {
 	private final String INDEXPATH = "d:\\index";
 	private Analyzer analyzer = new StandardAnalyzer();
 
+	//将检索到的数据进行分页
 	public Page<Article> find(Page<Article> page, Article article,List<Article> qlist) {
 		article.setPage(page);
 		page.setList(qlist);
+		page.setCount(qlist.size());
+		page.setPageSize(15);
 		return page;
 	}
 	
@@ -110,7 +113,11 @@ public class ArticleServiceSeach {
 			indexSearcher.close();
 			
 			//return qlist;
-			return find(page, article, qlist);
+			if(article==null)
+				return null;
+			else
+				return find(page, article, qlist);
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
