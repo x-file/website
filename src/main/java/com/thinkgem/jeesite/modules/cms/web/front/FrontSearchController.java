@@ -59,6 +59,7 @@ public class FrontSearchController extends BaseController{
 				// 文章模型
 				if (StringUtils.isBlank(t) || "article".equals(t)){
 					//articleService.createIndex();
+					//by sa
 					articleServiceSeach.createIndex();
 				}
 				// 留言模型
@@ -87,6 +88,8 @@ public class FrontSearchController extends BaseController{
 //				Page<Article> page = articleService.search(new Page<Article>(request, response), qStr, cid, bd, ed);
 //				page.setMessage("匹配结果，共耗时 " + (System.currentTimeMillis() - start) + "毫秒。");
 //				model.addAttribute("page", page);
+				
+				//by sa
 				Page<Article> page = articleServiceSeach.getArticles(new Page<Article>(request, response),q);
 				model.addAttribute("page", page);
 			}
