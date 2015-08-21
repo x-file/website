@@ -41,7 +41,7 @@
 			    </li>
             </ul>
             <form class="navbar-form pull-right" action="${ctx}/search" method="get">
-              	<input type="text" name="q" maxlength="20" style="width:65px;" placeholder="全站搜索..." value="${q}">
+              	<input type="text" name="q" maxlength="20" style="width:125px;" placeholder="全站搜索..." value="${q}">
             </form>
           </div><!--/.nav-collapse -->
         </div>
