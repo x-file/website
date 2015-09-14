@@ -22,31 +22,31 @@ import com.thinkgem.jeesite.common.mapper.JsonMapper;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
-import com.thinkgem.jeesite.modules.cms.entity.Article;
 import com.thinkgem.jeesite.modules.cms.entity.Category;
 import com.thinkgem.jeesite.modules.cms.entity.Site;
-import com.thinkgem.jeesite.modules.cms.service.ArticleDataService;
-import com.thinkgem.jeesite.modules.cms.service.ArticleService;
+import com.thinkgem.jeesite.modules.cms.entity.Video;
 import com.thinkgem.jeesite.modules.cms.service.CategoryService;
 import com.thinkgem.jeesite.modules.cms.service.FileTplService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
+import com.thinkgem.jeesite.modules.cms.service.VideoDataService;
+import com.thinkgem.jeesite.modules.cms.service.VideoService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.cms.utils.TplUtils;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
- * 文章Controller
+ * 视频Controller
  * @author ThinkGem
  * @version 2013-3-23
  */
 @Controller
-@RequestMapping(value = "${adminPath}/cms/article")
-public class ArticleController extends BaseController {
+@RequestMapping(value = "${adminPath}/cms/video")
+public class VideoController extends BaseController {
 
 	@Autowired
-	private ArticleService articleService;
+	private VideoService videoService;
 	@Autowired
-	private ArticleDataService articleDataService;
+	private VideoDataService videoDataService;
 	@Autowired
 	private CategoryService categoryService;
     @Autowired
@@ -56,18 +56,18 @@ public class ArticleController extends BaseController {
 	
     //@ModelAttribute注解的方法会在此controller中每个方法执行前被执行
 	@ModelAttribute
-	public Article get(@RequestParam(required=false) String id) {
+	public Video get(@RequestParam(required=false) String id) {
 		if (StringUtils.isNotBlank(id)){
-			return articleService.get(id);
+			return videoService.get(id);
 		}else{
-			return new Article();
+			return new Video();
 		}
 	}
 	
 	//@RequestMapping(value = {"list", ""})表示：可以通过/list或者/来调用
-	@RequiresPermissions("cms:article:view")
+	@RequiresPermissions("cms:video:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(Article article, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list(Video video, HttpServletRequest request, HttpServletResponse response, Model model) {
 //		for (int i=0; i<10000000; i++){
 //			Article a = new Article();
 //			a.setCategory(new Category(article.getCategory().getId()));
@@ -76,82 +76,82 @@ public class ArticleController extends BaseController {
 //			a.getArticleData().setContent(a.getTitle());
 //			articleService.save(a);
 //		}
-        Page<Article> page = articleService.findPage(new Page<Article>(request, response), article, true); 
+        Page<Video> page = videoService.findPage(new Page<Video>(request, response), video, true); 
         model.addAttribute("page", page);
-		return "modules/cms/articleList";
+		return "modules/cms/videoList";
 	}
 
-	@RequiresPermissions("cms:article:view")
+	@RequiresPermissions("cms:video:view")
 	@RequestMapping(value = "form")
-	public String form(Article article, Model model) {
+	public String form(Video video, Model model) {
 		// 如果当前传参有子节点，则选择取消传参选择
-		if (article.getCategory()!=null && StringUtils.isNotBlank(article.getCategory().getId())){
-			List<Category> list = categoryService.findByParentId(article.getCategory().getId(), Site.getCurrentSiteId());
+		if (video.getCategory()!=null && StringUtils.isNotBlank(video.getCategory().getId())){
+			List<Category> list = categoryService.findByParentId(video.getCategory().getId(), Site.getCurrentSiteId());
 			if (list.size() > 0){
-				article.setCategory(null);
+				video.setCategory(null);
 			}else{
-				article.setCategory(categoryService.get(article.getCategory().getId()));
+				video.setCategory(categoryService.get(video.getCategory().getId()));
 			}
 		}
-		article.setArticleData(articleDataService.get(article.getId()));
+		video.setVideoData(videoDataService.get(video.getId()));
 //		if (article.getCategory()=null && StringUtils.isNotBlank(article.getCategory().getId())){
 //			Category category = categoryService.get(article.getCategory().getId());
 //		}
         model.addAttribute("contentViewList",getTplContent());
-        model.addAttribute("article_DEFAULT_TEMPLATE",Article.DEFAULT_TEMPLATE);
-		model.addAttribute("article", article);
-		CmsUtils.addViewConfigAttribute(model, article.getCategory());
-		return "modules/cms/articleForm";
+        model.addAttribute("video_DEFAULT_TEMPLATE",Video.DEFAULT_TEMPLATE);
+		model.addAttribute("video", video);
+		CmsUtils.addViewConfigAttribute(model, video.getCategory());
+		return "modules/cms/videoForm";
 	}
 
-	@RequiresPermissions("cms:article:edit")
+	@RequiresPermissions("cms:video:edit")
 	@RequestMapping(value = "save")
-	public String save(Article article, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, article)){
-			return form(article, model);
+	public String save(Video video, Model model, RedirectAttributes redirectAttributes) {
+		if (!beanValidator(model, video)){
+			return form(video, model);
 		}
-		articleService.save(article);
-		addMessage(redirectAttributes, "保存文章'" + StringUtils.abbr(article.getTitle(),50) + "'成功");
-		String categoryId = article.getCategory()!=null?article.getCategory().getId():null;
-		return "redirect:" + adminPath + "/cms/article/?repage&category.id="+(categoryId!=null?categoryId:"");
+		videoService.save(video);
+		addMessage(redirectAttributes, "保存视频'" + StringUtils.abbr(video.getTitle(),50) + "'成功");
+		String categoryId = video.getCategory()!=null?video.getCategory().getId():null;
+		return "redirect:" + adminPath + "/cms/video/?repage&category.id="+(categoryId!=null?categoryId:"");
 	}
 	
-	@RequiresPermissions("cms:article:edit")
+	@RequiresPermissions("cms:video:edit")
 	@RequestMapping(value = "delete")
-	public String delete(Article article, String categoryId, @RequestParam(required=false) Boolean isRe, RedirectAttributes redirectAttributes) {
+	public String delete(Video video, String categoryId, @RequestParam(required=false) Boolean isRe, RedirectAttributes redirectAttributes) {
 		// 如果没有审核权限，则不允许删除或发布。
-		if (!UserUtils.getSubject().isPermitted("cms:article:audit")){
+		if (!UserUtils.getSubject().isPermitted("cms:video:audit")){
 			addMessage(redirectAttributes, "你没有删除或发布权限");
 		}
-		articleService.delete(article, isRe);
-		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"删除")+"文章成功");
-		return "redirect:" + adminPath + "/cms/article/?repage&category.id="+(categoryId!=null?categoryId:"");
+		videoService.delete(video, isRe);
+		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"删除")+"视频成功");
+		return "redirect:" + adminPath + "/cms/video/?repage&category.id="+(categoryId!=null?categoryId:"");
 	}
 
 	/**
-	 * 文章选择列表
+	 * 视频选择列表
 	 */
-	@RequiresPermissions("cms:article:view")
+	@RequiresPermissions("cms:video:view")
 	@RequestMapping(value = "selectList")
-	public String selectList(Article article, HttpServletRequest request, HttpServletResponse response, Model model) {
-        list(article, request, response, model);
-		return "modules/cms/articleSelectList";
+	public String selectList(Video video, HttpServletRequest request, HttpServletResponse response, Model model) {
+        list(video, request, response, model);
+		return "modules/cms/videoSelectList";
 	}
 	
 	/**
-	 * 通过编号获取文章标题
+	 * 通过编号获取视频标题
 	 */
-	@RequiresPermissions("cms:article:view")
+	@RequiresPermissions("cms:video:view")
 	@ResponseBody
 	@RequestMapping(value = "findByIds")
 	public String findByIds(String ids) {
-		List<Object[]> list = articleService.findByIds(ids);
+		List<Object[]> list = videoService.findByIds(ids);
 		return JsonMapper.nonDefaultMapper().toJson(list);
 	}
 
     private List<String> getTplContent() {
    		List<String> tplList = fileTplService.getNameListByPrefix(siteService.get(Site.getCurrentSiteId()).getSolutionPath());
-   		tplList = TplUtils.tplTrim(tplList, Article.DEFAULT_TEMPLATE, "");
+   		tplList = TplUtils.tplTrim(tplList, Video.DEFAULT_TEMPLATE, "");
    		return tplList;
    	}
 }

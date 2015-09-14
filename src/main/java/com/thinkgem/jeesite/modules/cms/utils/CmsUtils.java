@@ -19,6 +19,7 @@ import com.thinkgem.jeesite.modules.cms.entity.Article;
 import com.thinkgem.jeesite.modules.cms.entity.Category;
 import com.thinkgem.jeesite.modules.cms.entity.Link;
 import com.thinkgem.jeesite.modules.cms.entity.Site;
+import com.thinkgem.jeesite.modules.cms.entity.Video;
 import com.thinkgem.jeesite.modules.cms.service.ArticleService;
 import com.thinkgem.jeesite.modules.cms.service.CategoryService;
 import com.thinkgem.jeesite.modules.cms.service.LinkService;
@@ -234,6 +235,22 @@ public class CmsUtils {
         str.append("/view-").append(article.getCategory().getId()).append("-").append(article.getId()).append(Global.getUrlSuffix());
         return str.toString();
     }
+    
+    /**
+     * 获得视频动态URL地址
+   	 * @param article
+   	 * @return url
+   	 */
+    public static String getVideoUrlDynamic(Video video) {
+        if(StringUtils.isNotBlank(video.getLink())){
+            return video.getLink();
+        }
+        StringBuilder str = new StringBuilder();
+        str.append(context.getContextPath()).append(Global.getFrontPath());
+        str.append("/view-").append(video.getCategory().getId()).append("-").append(video.getId()).append(Global.getUrlSuffix());
+        return str.toString();
+    }
+    
 
     /**
      * 获得栏目动态URL地址
