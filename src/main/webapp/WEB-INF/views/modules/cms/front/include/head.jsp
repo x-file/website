@@ -38,4 +38,5 @@
     <!-- CSS Page Style -->    
     <link rel="stylesheet" href="${ctxStatic}/unify/css/pages/portfolio-v2.css">
 	<link rel="stylesheet" href="${ctxStatic}/unify/css/pages/page_job.css">
+	<link rel="stylesheet" href="${ctxStatic}/unify/css/pages/page_search_inner.css">
 </c:if>

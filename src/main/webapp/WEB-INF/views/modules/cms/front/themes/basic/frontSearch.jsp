@@ -7,26 +7,145 @@
 	<meta name="decorator" content="cms_default_${site.theme}"/>
 	<meta name="description" content="${site.description}" />
 	<meta name="keywords" content="${site.keywords}" />
-	<script src="${ctxStatic}/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
-	<style type="text/css">
-		form.search{margin:12px 20px 5px;} .page{margin:20px;}
-		form.search input.txt{padding:3px;font-size:16px;width:300px;margin:5px;}
-		form.search select.txt{padding:3px;font-size:16px;width:308px;margin:5px;}
-		form.search input.txt.date{width:133px;}
-		form.search .sel{margin-bottom:8px;padding:0 0 10px 5px;border-bottom:1px solid #efefef;font-size:14px;} form.search .act{font-weight:bold;}
-		form.search .btn{padding:3px 18px;*padding:1px 0 0;font-size:16px;}
-		dl.search{line-height:25px;border-bottom:1px solid #efefef;margin:10px 20px 20px;}
-		dl.search dt{border-top:1px solid #efefef;padding:8px 5px 0px;font-size:16px;}
-		dl.search dt a.title{color:#0000cc;text-decoration:underline;}
-		dl.search dd{margin:0 5px 10px;font-size:14px;color:#555}
-		dl.search dd span,dl.search dd a{font-size:12px;color:#008000;}
-		dl.search .highlight{color:#DF0037;}
-		dl.search dd span.highlight{color:#DF0037;font-size:14px;}
-		dl.search dd span.info span.highlight{color:#DF0037;font-size:13px;}
-	</style>
 	<c:if test="${not empty message}"><script type="text/javascript">alert("${message}");</script></c:if>
 </head>
 <body>
+<div class="wrapper">
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs breadcrumbs-dark">
+        <div class="container">
+            <h1 class="pull-left">全站检索</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="">Page</a></li>
+                <li class="active">Search results</li>
+            </ul>
+        </div>
+    </div>
+    <!--=== End Breadcrumbs ===-->
+    
+    <!--=== Search Block Version 2 ===-->
+    <div class="search-block-v2">
+        <div class="container">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Search again</h2>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search again...">
+                    <span class="input-group-btn">
+                        <button class="btn-u" type="button"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>    
+    </div><!--/container-->     
+    <!--=== End Search Block Version 2 ===-->
+
+    <!--=== Search Results ===-->
+    <div class="container s-results margin-bottom-50">
+        <span class="results-number">About 384,907 results</span>
+        <!-- Begin Inner Results -->
+        <div class="inner-results">
+            <h3><a href="#">Web design</a></h3>
+            <ul class="list-inline up-ul">
+                <li>en.wikipedia.org/wiki/Web_design‎</li>
+                <li class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+                        More<i class="fa fa-caret-down margin-left-5"></i>
+                        <span class="sr-only">Toggle Dropdown</span>                            
+                    </button>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="#">Share</a></li>
+                        <li><a href="#">Similar</a></li>
+                        <li><a href="#">Advanced search</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Wrapbootstrap</a></li>
+                <li><a href="#">Dribbble</a></li>
+            </ul>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut orci urna. Morbi blandit enim eget risus posuere dapibus. Vestibulum velit nisi, tempus in placerat non, auctor eu purus. Morbi suscipit porta libero, ac tempus tellus consectetur non. Praesent eget consectetur nunc. Aliquam erat volutpat. Suspendisse ultrices eros eros, consectetur facilisis urna posuere id.</p>
+            <ul class="list-inline down-ul">
+                <li>
+                    <ul class="list-inline star-vote">
+                        <li><i class="color-green fa fa-star"></i></li>
+                        <li><i class="color-green fa fa-star"></i></li>
+                        <li><i class="color-green fa fa-star"></i></li>
+                        <li><i class="color-green fa fa-star"></i></li>
+                        <li><i class="color-green fa fa-star-half-o"></i></li>
+                    </ul>
+                </li>
+                <li>3 years ago - By Anthon Brandley</li>
+                <li>234,034 views</li>
+                <li><a href="#">Web designer</a></li>
+            </ul>    
+        </div>
+        <!-- Begin Inner Results -->
+
+        <hr>
+
+        <!-- Begin Inner Results -->
+        <div class="inner-results">
+            <h3><a href="#">WrapBootstrap - Bootstrap Themes &amp; Templates</a></h3>
+            <ul class="list-inline up-ul">
+                <li>https://wrapbootstrap.com/‎</li>
+                <li class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+                        More<i class="fa fa-caret-down margin-left-5"></i>
+                        <span class="sr-only">Toggle Dropdown</span>                            
+                    </button>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="#">Share</a></li>
+                        <li><a href="#">Similar</a></li>
+                        <li><a href="#">Advanced search</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Admin</a></li>
+                <li><a href="#">Template</a></li>
+                <li><a href="#">OnePage Template</a></li>
+                <li><a href="#">Joomla</a></li>
+            </ul>
+            <div class="overflow-h">
+                <img src="assets/img/testimonials/img1.jpg" alt="">
+                <div class="overflow-a">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut orci urna. Morbi blandit enim eget risus posuere dapibus. Vestibulum velit nisi, tempus in placerat non, auctor eu purus. Morbi suscipit porta libero, ac tempus tellus consectetur non. Praesent eget consectetur nunc. Aliquam erat volutpat. Suspendisse ultrices eros eros, consectetur facilisis urna posuere id.</p>
+                    <ul class="list-inline down-ul">
+                        <li>
+                            <ul class="list-inline star-vote">
+                                <li><i class="color-green fa fa-star"></i></li>
+                                <li><i class="color-green fa fa-star"></i></li>
+                                <li><i class="color-green fa fa-star"></i></li>
+                                <li><i class="color-green fa fa-star"></i></li>
+                                <li><i class="color-green fa fa-star-half-o"></i></li>
+                            </ul>
+                        </li>
+                        <li>11 months ago - By WrapBootstrap</li>
+                        <li>2,092,675 views</li>
+                    </ul>
+                </div>       
+            </div>    
+        </div>
+        <!-- Begin Inner Results -->
+        
+        <div class="margin-bottom-30"></div>
+
+        <div class="text-left">
+            <ul class="pagination">
+                <li><a href="#">«</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#">157</a></li>
+                <li><a href="#">158</a></li>
+                <li><a href="#">»</a></li>
+            </ul>                                                            
+        </div>
+    </div><!--/container-->     
+    <!--=== End Search Results ===-->
+
+    
+</div><!--/End Wrapepr-->
+
+
 	<form:form id="searchForm" method="get" class="search">
 		<input type="hidden" id="pageNo" name="pageNo" value="${page.pageNo}"/>
 		<input type="hidden" id="t" name="t" value="${not empty t?t:'article'}"/>
@@ -42,22 +161,6 @@
 					<tr><td>包含以下<strong>任意一个</strong>关键词</td><td><input type="text" name="q" value="${q}" class="txt"/>
 						<input type="submit" value="搜  索" class="btn" onclick="$('#a').val('1')"/>
 						<input type="submit" value="简单搜索" class="btn" onclick="$('#a').val('0')"/></td></tr>
-					<tr><td>包含以下<strong>全部</strong>的关键词</td><td><input type="text" name="qand" value="${qand}" class="txt"/></td></tr>
-					<tr><td><strong>不包含</strong>以下关键词</td><td><input type="text" name="qnot" value="${qnot}" class="txt"/></td></tr>
-					<tr><td>检索结果每页显示的条数</td><td>
-						<select name="pageSize" class="txt">
-							<option value="10"${page.pageSize eq '10'?' selected':''}>每页显示10条</option>
-							<option value="20"${page.pageSize eq '20'?' selected':''}>每页显示20条</option>
-							<option value="30"${page.pageSize eq '30'?' selected':''}>每页显示30条</option>
-							<option value="40"${page.pageSize eq '40'?' selected':''}>每页显示40条</option>
-							<option value="50"${page.pageSize eq '50'?' selected':''}>每页显示50条</option>
-						</select></td></tr>
-					<tr><td><c:if test="${empty t || t eq 'article'}">最后更新日期范围</c:if><c:if test="${t eq 'guestbook'}">留言日期范围</c:if></td><td>
-						<input id="bd" name="bd" type="text" readonly="readonly" maxlength="20" class="txt date"
-							value="${param.bd}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>&nbsp;~&nbsp;
-						<input id="ed" name="ed" type="text" readonly="readonly" maxlength="20" class="txt date"
-							value="${param.ed}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
-					</td></tr>
 				</table>
 			</c:when><c:otherwise>
 				<input type="hidden" id="pageSize" name="pageSize" value="${page.pageSize}"/>
