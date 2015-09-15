@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="${ctxStatic}/unify/css/headers/header-default.css">
 <link rel="stylesheet" href="${ctxStatic}/unify/css/footers/footer-v1.css">
 
+<!-- CSS Implementing Plugins -->
 <c:if test="${site.theme eq 'basic'}">
     <link rel="stylesheet" href="${ctxStatic}/unify/plugins/animate.css">
     <link rel="stylesheet" href="${ctxStatic}/unify/plugins/line-icons/line-icons.css">
@@ -39,4 +40,5 @@
     <link rel="stylesheet" href="${ctxStatic}/unify/css/pages/portfolio-v2.css">
 	<link rel="stylesheet" href="${ctxStatic}/unify/css/pages/page_job.css">
 	<link rel="stylesheet" href="${ctxStatic}/unify/css/pages/page_search_inner.css">
+	<link rel="stylesheet" href="${ctxStatic}/unify/css/pages/blog.css">
 </c:if>

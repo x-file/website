@@ -29,12 +29,15 @@ import com.thinkgem.jeesite.modules.cms.entity.Category;
 import com.thinkgem.jeesite.modules.cms.entity.Comment;
 import com.thinkgem.jeesite.modules.cms.entity.Link;
 import com.thinkgem.jeesite.modules.cms.entity.Site;
+import com.thinkgem.jeesite.modules.cms.entity.Video;
 import com.thinkgem.jeesite.modules.cms.service.ArticleDataService;
 import com.thinkgem.jeesite.modules.cms.service.ArticleService;
 import com.thinkgem.jeesite.modules.cms.service.CategoryService;
 import com.thinkgem.jeesite.modules.cms.service.CommentService;
 import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
+import com.thinkgem.jeesite.modules.cms.service.VideoDataService;
+import com.thinkgem.jeesite.modules.cms.service.VideoService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 
 /**
@@ -49,7 +52,11 @@ public class FrontController extends BaseController{
 	@Autowired
 	private ArticleService articleService;
 	@Autowired
+	private VideoService videoService;
+	@Autowired
 	private ArticleDataService articleDataService;
+	@Autowired
+	private VideoDataService videoDataService;
 	@Autowired
 	private LinkService linkService;
 	@Autowired
@@ -232,6 +239,7 @@ public class FrontController extends BaseController{
 			return "error/404";
 		}
 		model.addAttribute("site", category.getSite());
+		//文章内容页
 		if ("article".equals(category.getModule())){
 			// 如果没有子栏目，并父节点为跟节点的，栏目列表为当前栏目。
 			List<Category> categoryList = Lists.newArrayList();
@@ -261,6 +269,37 @@ public class FrontController extends BaseController{
             model.addAttribute("site", site);
 //			return "modules/cms/front/themes/"+category.getSite().getTheme()+"/"+getTpl(article);
             return "modules/cms/front/themes/"+site.getTheme()+"/"+getTpl(article);
+            
+        //视频内容页 by sa
+		}else if("video".equals(category.getModule())){
+			// 如果没有子栏目，并父节点为跟节点的，栏目列表为当前栏目。
+			List<Category> categoryList = Lists.newArrayList();
+			if (category.getParent().getId().equals("1")){
+				categoryList.add(category);
+			}else{
+				categoryList = categoryService.findByParentId(category.getParent().getId(), category.getSite().getId());
+			}
+			// 获取视频内容
+			Video video = videoService.get(contentId);
+			if (video==null || !Video.DEL_FLAG_NORMAL.equals(video.getDelFlag())){
+				return "error/404";
+			}
+			// 文章阅读次数+1
+			videoService.updateHitsAddOne(contentId);
+			// 获取推荐视频列表
+			List<Object[]> relationList = videoService.findByIds(videoDataService.get(video.getId()).getRelation());
+			// 将数据传递到视图
+			model.addAttribute("category", categoryService.get(video.getCategory().getId()));
+			model.addAttribute("categoryList", categoryList);
+			video.setVideoData(videoDataService.get(video.getId()));
+			model.addAttribute("video", video);
+			model.addAttribute("relationList", relationList); 
+            CmsUtils.addViewConfigAttribute(model, video.getCategory());
+            CmsUtils.addViewConfigAttribute(model, video.getViewConfig());
+            Site site = siteService.get(category.getSite().getId());
+            model.addAttribute("site", site);
+//			return "modules/cms/front/themes/"+category.getSite().getTheme()+"/"+getTpl(article);
+            return "modules/cms/front/themes/"+site.getTheme()+"/"+getVideoTpl(video);
 		}
 		return "error/404";
 	}
@@ -319,6 +358,12 @@ public class FrontController extends BaseController{
 		return "modules/cms/front/themes/"+site.getTheme()+"/frontMap";
 	}
 
+	/**
+	 * 获取文章页模版
+	 * @param article
+	 * @return
+	 * by sa
+	 */
     private String getTpl(Article article){
         if(StringUtils.isBlank(article.getCustomContentView())){
             String view = null;
@@ -337,6 +382,35 @@ public class FrontController extends BaseController{
             return StringUtils.isBlank(view) ? Article.DEFAULT_TEMPLATE : view;
         }else{
             return article.getCustomContentView();
+        }
+    }
+    
+    
+	/**
+	 * 获取视频页模版
+	 * @param video
+	 * @return
+	 * by sa
+	 */
+    private String getVideoTpl(Video video){
+        if(StringUtils.isBlank(video.getCustomContentView())){
+            String view = null;
+            Category c = video.getCategory();
+            boolean goon = true;
+            do{
+                if(StringUtils.isNotBlank(c.getCustomContentView())){
+                    view = c.getCustomContentView();
+                    goon = false;
+                }else if(c.getParent() == null || c.getParent().isRoot()){
+                    goon = false;
+                }else{
+                    c = c.getParent();
+                }
+            }while(goon);
+            System.out.println(StringUtils.isBlank(view) ? Video.DEFAULT_TEMPLATE : view);
+            return StringUtils.isBlank(view) ? Video.DEFAULT_TEMPLATE : view;
+        }else{
+            return video.getCustomContentView();
         }
     }
 	
