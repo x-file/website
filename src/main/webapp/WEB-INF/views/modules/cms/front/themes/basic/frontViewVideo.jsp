@@ -46,14 +46,15 @@
         	<div class="col-md-9 md-margin-bottom-60">
                 <!--Blog Post-->        
                 <div class="blog margin-bottom-40">
+                    <div id="web_player" style="height: 500px">
+                        <script type="text/javascript" src="${ctxStatic}/sewise/sewise.player.min.js?server=vod&type=flv&videourl=http://218.28.9.82:3333/stkweb/u/cms/www/201503/142030591rnv.flv&autostart=true&buffer=3&lang=zh_CN&logo=http://218.28.9.82:3333/stkweb/res/jeecms/js/player/logo.png&poster=http://218.28.9.82:3333/stkweb/res/jeecms/js/player/poster.png&title=展播&skin=vodWhite"></script>
+                    </div>
                     <h2><a href="blog_item_option1.html">${video.title}</a></h2>
                     <div class="blog-post-tags">
-                        <ul class="list-unstyled list-inline blog-info">
+                        <ul class="list-unstyled list-inline blog-tags">
                             <li><i class="fa fa-calendar"></i> <fmt:formatDate value="${video.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/> &nbsp;</li>
                             <li><i class="fa fa-pencil"></i> ${video.user.name}</li>
-                            <li><i class="fa fa-comments"></i> <a href="#">${video.hits}</a></li>
-                        </ul>
-                        <ul class="list-unstyled list-inline blog-tags">
+                            <li><i class="fa fa-comments"></i> <a href="#">${video.hits}</a>&nbsp;&nbsp;</li>
                             <li>
                                 <i class="fa fa-tags"></i> 
                                 <a href="#">Technology</a> 
@@ -61,20 +62,12 @@
                                 <a href="#">Internet</a>
                                 <a href="#">Media</a>
                             </li>
-                        </ul>                                                
+                        </ul>                                               
                     </div>
-                    <div id="web_player" style="height: 500px">
-                        <script type="text/javascript" src="${ctxStatic}/sewise/sewise.player.min.js?server=vod&type=flv&videourl=http://218.28.9.82:3333/stkweb/u/cms/www/201503/142030591rnv.flv&autostart=true&buffer=3&lang=zh_CN&logo=http://218.28.9.82:3333/stkweb/res/jeecms/js/player/logo.png&poster=http://218.28.9.82:3333/stkweb/res/jeecms/js/player/poster.png&title=展播&skin=vodWhite"></script>
-                    </div>
-                    
                     <div class="tag-box tag-box-v2">
                         <p><c:if test="${not empty video.description}">摘要：${video.description}</c:if></p>
                     </div>
-                    <p>${video.videoData.content}</p>
-                    <blockquote>
-                        <p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why.</p>
-                        <small>CEO Jack Bour</small>
-                    </blockquote>    
+                    <p>${video.videoData.content}</p>   
                 </div>
                 <!--End Blog Post-->        
 
