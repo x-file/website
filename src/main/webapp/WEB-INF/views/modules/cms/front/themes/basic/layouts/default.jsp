@@ -32,6 +32,7 @@
 				<!-- Topbar -->
 				<div class="topbar">
 					<ul class="loginbar pull-right">
+						<li>来自:${visit.area }&nbsp;&nbsp;是第${visit.no}个访问本站的用户，当前在线:${online }</li>
 						<li class="hoverSelector"><i class="fa fa-globe"></i> <a>语言</a>
 							<ul class="languages hoverSelectorBlock">
 								<li class="active"><a href="#">简体中文 <i
