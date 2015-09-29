@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.cms.dao.CmsVisitDao">
+    
+	<sql id="cmsVisitColumns">
+		a.id AS "id",
+		a.no AS "no",
+		a.member_name AS "memberName",
+		a.ip AS "ip",
+		a.area AS "area",
+		a.time AS "time"
+	</sql>
+	
+	<sql id="cmsVisitJoins">
+	</sql>
+    
+	<select id="get" resultType="CmsVisit">
+		SELECT 
+			<include refid="cmsVisitColumns"/>
+		FROM cms_visit a
+		<include refid="cmsVisitJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CmsVisit">
+		SELECT 
+			<include refid="cmsVisitColumns"/>
+		FROM cms_visit a
+		<include refid="cmsVisitJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CmsVisit">
+		SELECT 
+			<include refid="cmsVisitColumns"/>
+		FROM cms_visit a
+		<include refid="cmsVisitJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO cms_visit(
+			id,
+			member_name,
+			ip,
+			area,
+			time
+		) VALUES (
+			#{id},
+			#{memberName},
+			#{ip},
+			#{area},
+			#{time}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE cms_visit SET 	
+			member_name = #{memberName},
+			ip = #{ip},
+			area = #{area}
+			time = #{time}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM cms_visit
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

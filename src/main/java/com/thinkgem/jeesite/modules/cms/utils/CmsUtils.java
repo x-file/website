@@ -24,6 +24,7 @@ import com.thinkgem.jeesite.modules.cms.service.ArticleService;
 import com.thinkgem.jeesite.modules.cms.service.CategoryService;
 import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
+import com.thinkgem.jeesite.modules.cms.service.VideoService;
 
 import javax.servlet.ServletContext;
 
@@ -39,6 +40,7 @@ public class CmsUtils {
 	private static SiteService siteService = SpringContextHolder.getBean(SiteService.class);
 	private static CategoryService categoryService = SpringContextHolder.getBean(CategoryService.class);
 	private static ArticleService articleService = SpringContextHolder.getBean(ArticleService.class);
+	private static VideoService videoService = SpringContextHolder.getBean(VideoService.class);//by sa
 	private static LinkService linkService = SpringContextHolder.getBean(LinkService.class);
     private static ServletContext context = SpringContextHolder.getBean(ServletContext.class);
 
@@ -177,7 +179,54 @@ public class CmsUtils {
 		page = articleService.findPage(page, article, false);
 		return page.getList();
 	}
+
+	/**
+	 * 获取视频
+	 * @param videoId 获取编号
+	 * @return
+	 * @author sa
+	 */
+	public static Video getVideo(String videoId){
+		return videoService.get(videoId);
+	}
 	
+	/**
+	 * 获取视频列表
+	 * @param siteId 站点编号
+	 * @param categoryId 分类编号
+	 * @param number 获取数目
+	 * @param param  预留参数，例： key1:'value1', key2:'value2' ...
+	 * 			posid	推荐位（1：首页焦点图；2：栏目页文章推荐；）
+	 * 			image	文章图片（1：有图片的文章）
+	 *          orderBy 排序字符串
+	 * @return
+	 * @author sa
+	 * ${fnc:getVideoList(category.site.id, category.id, not empty pageSize?pageSize:8, 'posid:2, orderBy: \"hits desc\"')}"
+	 */
+	public static List<Video> getVideoList(String siteId, String categoryId, int number, String param){
+		Page<Video> page = new Page<Video>(1, number, -1);
+		Category category = new Category(categoryId, new Site(siteId));
+		category.setParentIds(categoryId);
+		Video video = new Video(category);
+		if (StringUtils.isNotBlank(param)){
+			@SuppressWarnings({ "rawtypes" })
+			Map map = JsonMapper.getInstance().fromJson("{"+param+"}", Map.class);
+			if (new Integer(1).equals(map.get("posid")) || new Integer(2).equals(map.get("posid"))){
+				video.setPosid(String.valueOf(map.get("posid")));
+			}
+			if (new Integer(1).equals(map.get("image"))){
+				video.setImage(Global.YES);
+			}
+			if (StringUtils.isNotBlank((String)map.get("orderBy"))){
+				page.setOrderBy((String)map.get("orderBy"));
+			}
+		}
+		video.setDelFlag(Video.DEL_FLAG_NORMAL);
+		page = videoService.findPage(page, video, false);
+		return page.getList();
+	}
+	
+
 	/**
 	 * 获取链接
 	 * @param linkId 文章编号

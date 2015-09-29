@@ -32,6 +32,7 @@
 				<!-- Topbar -->
 				<div class="topbar">
 					<ul class="loginbar pull-right">
+						<li>来自:${visit.area }&nbsp;&nbsp;是第${visit.no}个访问本站的用户，当前在线:${online }</li>
 						<li class="hoverSelector"><i class="fa fa-globe"></i> <a>语言</a>
 							<ul class="languages hoverSelectorBlock">
 								<li class="active"><a href="#">简体中文 <i
@@ -102,53 +103,34 @@
 
 
 	<!-- JS Global Compulsory -->
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<!-- JS Implementing Plugins -->
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/back-to-top.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/smoothScroll.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/jquery.parallax.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/smoothScroll.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/jquery.parallax.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/jquery.mixitup.min.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/parallax-slider/js/modernizr.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/parallax-slider/js/jquery.cslider.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/jquery.mixitup.min.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/parallax-slider/js/modernizr.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/parallax-slider/js/jquery.cslider.js"></script>
 
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/plugins/image-hover/js/touch.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/plugins/image-hover/js/touch.js"></script>
 
 	<!-- JS Customization -->
 	<script type="text/javascript" src="${ctxStatic}/unify/js/custom.js"></script>
 	<!-- JS Page Level -->
 	<script type="text/javascript" src="${ctxStatic}/unify/js/app.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/js/plugins/fancy-box.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/js/plugins/owl-carousel.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/js/plugins/revolution-slider.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/js/plugins/fancy-box.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/js/plugins/owl-carousel.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/js/plugins/revolution-slider.js"></script>
 
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/js/pages/page_portfolio.js"></script>
-	<script type="text/javascript"
-		src="${ctxStatic}/unify/js/plugins/parallax-slider.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/js/pages/page_portfolio.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/unify/js/plugins/parallax-slider.js"></script>
 
 	<script type="text/javascript">
 		jQuery(document).ready(function() {

@@ -34,7 +34,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/cms/video/?category.id=${video.category.id}">文章列表</a></li>
+		<li><a href="${ctx}/cms/video/?category.id=${video.category.id}">视频列表</a></li>
 		<li class="active"><a href="<c:url value='${fns:getAdminPath()}/cms/video/form?id=${video.id}&category.id=${video.category.id}'><c:param name='category.name' value='${video.category.name}'/></c:url>">文章<shiro:hasPermission name="cms:video:edit">${not empty video.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="cms:video:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="video" action="${ctx}/cms/video/save" method="post" class="form-horizontal">
@@ -123,7 +123,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">相关文章:</label>
+			<label class="control-label">相关视频:</label>
 			<div class="controls">
 				<form:hidden id="videoDataRelation" path="videoData.relation" htmlEscape="false" maxlength="200" class="input-xlarge"/>
 				<ol id="videoSelectList"></ol>

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>选择文章</title>
+	<title>选择视频</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -29,7 +29,7 @@
 			});
 		});
 		function view(href){
-			top.$.jBox.open('iframe:'+href,'查看文章',$(top.document).width()-220,$(top.document).height()-120,{
+			top.$.jBox.open('iframe:'+href,'查看视频',$(top.document).width()-220,$(top.document).height()-120,{
 				buttons:{"关闭":true},
 				loaded:function(h){
 					$(".jbox-content", top.document).css("overflow-y","hidden");

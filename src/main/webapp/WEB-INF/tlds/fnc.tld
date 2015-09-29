@@ -84,6 +84,22 @@
   </function>
   
   <function>
+    <description>获取视频</description>
+    <name>getVideo</name>
+    <function-class>com.thinkgem.jeesite.modules.cms.utils.CmsUtils</function-class>
+    <function-signature>com.thinkgem.jeesite.entity.cms.Article getArticle(java.lang.String)</function-signature>
+    <example>${fnc:getArticle(articleId)}</example>  
+  </function>
+  
+  <function>
+    <description>获取视频列表</description>
+    <name>getVideoList</name>
+    <function-class>com.thinkgem.jeesite.modules.cms.utils.CmsUtils</function-class>
+    <function-signature>java.util.List getArticleList(java.lang.String, java.lang.String, int, java.lang.String)</function-signature>
+    <example>${fnc:getArticleList(siteId, categoryId, number, param)}</example>  
+  </function>
+  
+  <function>
     <description>获取链接</description>
     <name>getLink</name>
     <function-class>com.thinkgem.jeesite.modules.cms.utils.CmsUtils</function-class>

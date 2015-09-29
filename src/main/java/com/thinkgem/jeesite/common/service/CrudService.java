@@ -88,5 +88,24 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	public void delete(T entity) {
 		dao.delete(entity);
 	}
+	
+	
+	
+	/**
+	 * 保存数据（插入或更新）
+	 * @param entity
+	 */
+	@Transactional(readOnly = false)
+	public int add(T entity) {
+		if (entity.getIsNewRecord()){
+			entity.preInsert();
+			return dao.insert(entity);
+		}else{
+			entity.preUpdate();
+			return dao.update(entity);
+		}
+	}
+	
+
 
 }
