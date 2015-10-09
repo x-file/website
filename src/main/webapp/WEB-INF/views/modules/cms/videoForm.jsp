@@ -112,7 +112,7 @@
 			<label class="control-label">视频:</label>
 			<div class="controls">
 				<input type="hidden" id="link" name="link" value="${video.link}" />
-				<sys:ckfinder input="link" type="thumb" uploadPath="/cms/video" selectMultiple="false"/>
+				<sys:ckfinder input="link" type="files" uploadPath="/video" selectMultiple="false"/>
 			</div>
 		</div>
 		<div class="control-group">

@@ -47,7 +47,7 @@
                 <!--Blog Post-->        
                 <div class="blog margin-bottom-40">
                     <div id="web_player" style="height: 500px">
-                        <script type="text/javascript" src="${ctxStatic}/sewise/sewise.player.min.js?server=vod&type=flv&videourl=http://218.28.9.82:3333/stkweb/u/cms/www/201503/142030591rnv.flv&autostart=true&buffer=3&lang=zh_CN&logo=http://218.28.9.82:3333/stkweb/res/jeecms/js/player/logo.png&poster=http://218.28.9.82:3333/stkweb/res/jeecms/js/player/poster.png&title=展播&skin=vodWhite"></script>
+                        <script type="text/javascript" src="${ctxStatic}/sewise/sewise.player.min.js?server=vod&type=flv&videourl=${host}${video.link}&autostart=true&buffer=3&lang=zh_CN&logo=http://218.28.9.82:3333/stkweb/res/jeecms/js/player/logo.png&poster=http://218.28.9.82:3333/stkweb/res/jeecms/js/player/poster.png&title=展播&skin=vodWhite"></script>
                     </div>
                     <h2><a href="blog_item_option1.html">${video.title}</a></h2>
                     <div class="blog-post-tags">

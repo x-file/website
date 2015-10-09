@@ -94,6 +94,15 @@ public class Global {
 	public static String getFrontPath() {
 		return getConfig("frontPath");
 	}
+	
+	/**
+	 * 获取服务器IP地址
+	 * by sa
+	 */
+	public static String getHost() {
+		return getConfig("server_host");
+	}
+
 
 	/**
 	 * 获取URL后缀
@@ -204,5 +213,7 @@ public class Global {
 		System.out.println("qqwryPath:" + dir);
 		return dir;
 	}
+	
+	
 
 }
