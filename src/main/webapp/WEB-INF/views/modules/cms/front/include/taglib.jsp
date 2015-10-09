@@ -13,3 +13,4 @@
 <c:set var="ctxStaticFront" value="${ctxStatic}/modules/cms/front"/>
 <c:set var="ctxStaticTheme" value="${ctxStaticFront}/themes/${site.theme}"/>
 <c:set var="urlSuffix" value="${fns:getUrlSuffix()}"/>
+<c:set var="host" value="${fns:getConfig('server.ip')}"/>
