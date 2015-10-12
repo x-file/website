@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.cms.dao.StkScenerySpotDao">
+    
+	<sql id="stkScenerySpotColumns">
+		a.Spot_Id AS "id",
+		a.CamId AS "camId",
+		a.Name AS "name",
+		a.Comment AS "commnet"
+	</sql>
+	<sql id="stkScenerySpotJoins">
+	</sql>
+	
+	<select id="findList" resultType="StkScenerySpot">
+		SELECT 
+			<include refid="stkScenerySpotColumns"/>
+		FROM stk_scenery_spot a
+		<include refid="stkScenerySpotJoins"/>
+		<where>
+			1 = 1 
+		</where>
+		<choose>
+			
+			<otherwise>
+				ORDER BY a.Spot_Id DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	
+	
+	
+
+
+	
+</mapper>

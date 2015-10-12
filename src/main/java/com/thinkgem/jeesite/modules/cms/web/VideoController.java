@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.thinkgem.jeesite.common.db.DynamicDataSource;
 import com.thinkgem.jeesite.common.mapper.JsonMapper;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.utils.StringUtils;
@@ -28,6 +29,7 @@ import com.thinkgem.jeesite.modules.cms.entity.Video;
 import com.thinkgem.jeesite.modules.cms.service.CategoryService;
 import com.thinkgem.jeesite.modules.cms.service.FileTplService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
+import com.thinkgem.jeesite.modules.cms.service.StkScenerySpotService;
 import com.thinkgem.jeesite.modules.cms.service.VideoDataService;
 import com.thinkgem.jeesite.modules.cms.service.VideoService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
@@ -53,6 +55,9 @@ public class VideoController extends BaseController {
    	private FileTplService fileTplService;
     @Autowired
    	private SiteService siteService;
+    
+    @Autowired
+    private StkScenerySpotService stkScenerySpotService;
 	
     //@ModelAttribute注解的方法会在此controller中每个方法执行前被执行
 	@ModelAttribute
@@ -76,7 +81,10 @@ public class VideoController extends BaseController {
 //			a.getArticleData().setContent(a.getTitle());
 //			articleService.save(a);
 //		}
-        Page<Video> page = videoService.findPage(new Page<Video>(request, response), video, true); 
+		
+        Page<Video> page = videoService.findPage(new Page<Video>(request, response), video, true);
+        DynamicDataSource.setCurrentLookupKey("dataSource2");
+		List list = stkScenerySpotService.findAll();
         model.addAttribute("page", page);
 		return "modules/cms/videoList";
 	}
